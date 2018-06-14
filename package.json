@@ -3,21 +3,22 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "json-server": "^0.10.1",
-    "react": "^15.5.4",
-    "react-dom": "^15.5.4",
+    "json-server": "^0.13.0",
+    "react": "^16.4.0",
+    "react-dom": "^16.4.0",
     "react-redux": "^5.0.5",
     "react-router-dom": "^4.1.1",
-    "redux": "^3.6.0",
+    "redux": "^4.0.0",
     "redux-devtools-extension": "^2.13.2",
-    "redux-thunk": "^2.2.0"
+    "redux-thunk": "^2.2.0",
+    "yarn": "^1.6.0"
   },
   "devDependencies": {
-    "react-scripts": "1.0.7"
+    "react-scripts": "1.1.4"
   },
   "scripts": {
-    "start": "json-server --static ./build db.json",
-    "dev": "react-scripts start",
+    "start": "react-scripts start",
+    "production": "json-server --static ./build db.json",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
