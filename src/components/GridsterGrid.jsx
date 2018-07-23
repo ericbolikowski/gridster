@@ -61,7 +61,8 @@ const _GridsterGrid = ({ grid, dispatch: d }) => {
     solutionCoords = drop(dropRight(solutionCoords));
   }
 
-  const gridWidth = 800;
+
+  const gridWidth = window.innerWidth > 800 ? 800 : window.innerWidth;
   const gridAspectRatio = height / width;
   const gridHeight = gridWidth * gridAspectRatio;
 

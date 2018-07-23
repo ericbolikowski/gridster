@@ -11,7 +11,7 @@ class App extends Component {
     return (
         <div className="App">
           <div className="App-header">
-            <img src={GridsterLogo} alt="logo"/>
+            <img src={GridsterLogo} alt="logo" style={{ width: "60%" }} />
           </div>
           <GridsterConfig/>
           <GridsterGrid/>
