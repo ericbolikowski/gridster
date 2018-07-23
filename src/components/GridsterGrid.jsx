@@ -2,6 +2,8 @@ import React from 'react';
 import { css } from 'emotion'
 import { connect } from 'react-redux';
 import { CELL_STATE_CLEAR, CELL_STATE_FILLED, CELL_STATE_START_POINT, CELL_STATE_END_POINT, gridCellToggle } from "../reducers/grid";
+import { findClearGridPath } from "../lib/find-clear-grid-path";
+import { convertSolutionPathToCoordinates, isXYInCoords } from "../lib/utils";
 
 const cellCss = css`
   border: 1px solid rgb(212, 212, 212);
@@ -30,6 +32,9 @@ const hover = css`
     background-color: rgb(246, 246, 246);
   }
 `
+const solution = css`
+  background-color: rgb(240, 149, 28);
+`
 
 const _GridsterGrid = ({ grid, dispatch: d }) => {
 
@@ -38,11 +43,19 @@ const _GridsterGrid = ({ grid, dispatch: d }) => {
     return `'${row.join(" ")}'`;
   }).join("\n")
 
+  const solutionPath = findClearGridPath(grid);
+  let solutionCoords;
+  if (solutionPath) {
+    solutionCoords = convertSolutionPathToCoordinates(grid, solutionPath);
+  }
+
   return (
       <div style={{ display: 'grid', gridTemplate: gridTemplateAreas, width: '800px', height: '800px' }}>
         {namedCells.map((row, y) => row.map((cell, x) => {
           let colorClass;
-          if (cell.indexOf(CELL_STATE_FILLED) !== -1) {
+          if (solutionCoords && isXYInCoords(solutionCoords, x, y)) {
+            colorClass = solution
+          } else if (cell.indexOf(CELL_STATE_FILLED) !== -1) {
             colorClass = filled;
           } else if (cell.indexOf(CELL_STATE_CLEAR) !== -1) {
             colorClass = clear;

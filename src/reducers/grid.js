@@ -59,10 +59,10 @@ export const gridReducer = (state = initState, action) => {
       return { ...state, grid: newGrid };
 
     case GRID_CONFIG_WIDTH_CHANGE:
-      return { ...state, width: parseInt(width), };
+      return { ...state, width: parseInt(width, 10) };
 
     case GRID_CONFIG_HEIGHT_CHANGE:
-      return { ...state, height: parseInt(height), };
+      return { ...state, height: parseInt(height, 10) };
 
     default:
       return state;
