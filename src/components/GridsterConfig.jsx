@@ -49,7 +49,7 @@ const _GridsterConfig = ({ width, height, dispatch: d }) => (
                 max="20"
                 className={`${formControl}`}
                 value={height}
-                onChange={({ target: { value } }) => value > 1 && value <= 20 && d(gridConfigHeightChange(value))}
+                onChange={({ target: { value } }) => value >= 3 && value <= 20 && d(gridConfigHeightChange(value))}
             />
           </FormGroup>
         </div>
@@ -65,7 +65,7 @@ const _GridsterConfig = ({ width, height, dispatch: d }) => (
                 max="20"
                 className={`${formControl}`}
                 value={width}
-                onChange={({ target: { value } }) => value > 1 && value <= 20 && d(gridConfigWidthChange(value))}
+                onChange={({ target: { value } }) => value >= 3 && value <= 20 && d(gridConfigWidthChange(value))}
             />
           </FormGroup>
         </div>

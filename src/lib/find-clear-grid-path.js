@@ -24,10 +24,10 @@ export const findClearGridPath = function(_grid) {
 
   const startCoordinates = findStartCoordinates(grid);
 
-  var distanceFromTop = startCoordinates[0];
-  var distanceFromLeft = startCoordinates[1];
+  const distanceFromTop = startCoordinates[0];
+  const distanceFromLeft = startCoordinates[1];
 
-  var location = {
+  const location = {
     distanceFromTop: distanceFromTop,
     distanceFromLeft: distanceFromLeft,
     path: [],
@@ -72,11 +72,7 @@ export const findClearGridPath = function(_grid) {
   return false;
 };
 
-// This function will check a location's status
-// (a location is "valid" if it is on the grid, is not an "obstacle",
-// and has not yet been visited by our algorithm)
-// Returns "Valid", "Invalid", "Blocked", or "Goal"
-var locationStatus = function(grid, location) {
+const locationStatus = function(grid, location) {
   const gridSize = grid.length;
   const dft = location.distanceFromTop;
   const dfl = location.distanceFromLeft;
@@ -86,22 +82,17 @@ var locationStatus = function(grid, location) {
       location.distanceFromTop < 0 ||
       location.distanceFromTop >= gridSize) {
 
-    // location is not on the grid--return false
     return INVALID;
   } else if (grid[dft][dfl] === CELL_STATE_END_POINT) {
     return CELL_STATE_END_POINT;
   } else if (grid[dft][dfl] !== CELL_STATE_CLEAR) {
-    // location is either an obstacle or has been visited
     return BLOCKED;
   } else {
     return VALID;
   }
 };
 
-
-// Explores the grid from the given location in the given
-// direction
-var exploreInDirection = function(grid, currentLocation, direction) {
+const exploreInDirection = function(grid, currentLocation, direction) {
   const newPath = currentLocation.path.slice();
   newPath.push(direction);
 
@@ -126,7 +117,6 @@ var exploreInDirection = function(grid, currentLocation, direction) {
   };
   newLocation.status = locationStatus(grid, newLocation);
 
-  // If this new location is valid, mark it as 'Visited'
   if (newLocation.status === VALID) {
     grid[newLocation.distanceFromTop][newLocation.distanceFromLeft] = VISITED;
   }
