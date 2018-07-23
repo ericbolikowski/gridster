@@ -1,14 +1,14 @@
 .App {
-  margin-top: 30px;
-  width: 800px;
-  margin: 0 auto;
+    margin-top: 30px;
+    width: 800px;
+    margin: 0 auto;
 }
 
 .App-header {
-  padding: 50px 0;
-  color: white;
+    padding: 50px 0;
+    color: white;
 }
 
 * {
-  font-family: "Arial";
+    font-family: "Arial";
 }

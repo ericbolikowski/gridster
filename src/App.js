@@ -13,8 +13,8 @@ class App extends Component {
           <div className="App-header">
             <img src={GridsterLogo} alt="logo"/>
           </div>
-          <GridsterConfig />
-          <GridsterGrid />
+          <GridsterConfig/>
+          <GridsterGrid/>
         </div>
     );
   }

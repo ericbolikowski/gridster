@@ -1,4 +1,4 @@
-import { cloneDeep } from 'lodash';
+import { cloneDeep } from 'lodash';
 import PriorityQueue from 'priorityqueue';
 import {
   CELL_STATE_CLEAR,
@@ -17,15 +17,15 @@ const BLOCKED = 'BLOCKED';
 const UNKNOWN = 'UNKNOWN';
 const VISITED = 'VISITED';
 
-export const findClearGridPath = function(_grid) {
+export const findClearGridPath = function (_grid) {
 
   const grid = cloneDeep(_grid);
   const queue = new PriorityQueue();
 
   const startCoordinates = findStartCoordinates(grid);
 
-  const distanceFromTop = startCoordinates[0];
-  const distanceFromLeft = startCoordinates[1];
+  const distanceFromTop = startCoordinates[ 0 ];
+  const distanceFromLeft = startCoordinates[ 1 ];
 
   const location = {
     distanceFromTop: distanceFromTop,
@@ -72,7 +72,7 @@ export const findClearGridPath = function(_grid) {
   return false;
 };
 
-const locationStatus = function(grid, location) {
+const locationStatus = function (grid, location) {
   const gridSize = grid.length;
   const dft = location.distanceFromTop;
   const dfl = location.distanceFromLeft;
@@ -83,16 +83,16 @@ const locationStatus = function(grid, location) {
       location.distanceFromTop >= gridSize) {
 
     return INVALID;
-  } else if (grid[dft][dfl] === CELL_STATE_END_POINT) {
+  } else if (grid[ dft ][ dfl ] === CELL_STATE_END_POINT) {
     return CELL_STATE_END_POINT;
-  } else if (grid[dft][dfl] !== CELL_STATE_CLEAR) {
+  } else if (grid[ dft ][ dfl ] !== CELL_STATE_CLEAR) {
     return BLOCKED;
   } else {
     return VALID;
   }
 };
 
-const exploreInDirection = function(grid, currentLocation, direction) {
+const exploreInDirection = function (grid, currentLocation, direction) {
   const newPath = currentLocation.path.slice();
   newPath.push(direction);
 
@@ -118,7 +118,7 @@ const exploreInDirection = function(grid, currentLocation, direction) {
   newLocation.status = locationStatus(grid, newLocation);
 
   if (newLocation.status === VALID) {
-    grid[newLocation.distanceFromTop][newLocation.distanceFromLeft] = VISITED;
+    grid[ newLocation.distanceFromTop ][ newLocation.distanceFromLeft ] = VISITED;
   }
 
   return newLocation;

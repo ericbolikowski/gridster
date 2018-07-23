@@ -1,7 +1,7 @@
 import React from 'react';
 import { css } from 'emotion'
 import { connect } from 'react-redux';
-import { find, drop, dropRight } from 'lodash';
+import { find, drop, dropRight } from 'lodash';
 import { CELL_STATE_CLEAR, CELL_STATE_FILLED, CELL_STATE_START_POINT, CELL_STATE_END_POINT, gridCellToggle } from "../reducers/grid";
 import { findClearGridPath } from "../lib/find-clear-grid-path";
 import { convertSolutionPathToCoordinates, isXYInCoords } from "../lib/utils";
@@ -38,16 +38,16 @@ const solution = css`
 `
 
 const cellTypeToCssClassMap = {
-  [CELL_STATE_FILLED]: filled,
-  [CELL_STATE_CLEAR]: clear,
-  [CELL_STATE_END_POINT]: endPoint,
-  [CELL_STATE_START_POINT]: startPoint,
+  [ CELL_STATE_FILLED ]: filled,
+  [ CELL_STATE_CLEAR ]: clear,
+  [ CELL_STATE_END_POINT ]: endPoint,
+  [ CELL_STATE_START_POINT ]: startPoint,
 }
 
 const _GridsterGrid = ({ grid, dispatch: d }) => {
 
   const height = grid.length;
-  const width = grid[0].length;
+  const width = grid[ 0 ].length;
 
   const namedCells = grid.map((row, y) => row.map((cell, x) => `cell-${y}-${x} ${cell}`));
   const gridTemplateAreas = grid.map((row, y) => row.map((cell, x) => `cell-${y}-${x}`)).map(row => {
