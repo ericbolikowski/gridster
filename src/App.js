@@ -1,33 +1,41 @@
 import React, { Component } from 'react';
-import {BrowserRouter as Router, Route} from 'react-router-dom'
-import logo from './logo.svg';
+import GridsterLogo from './assets/Gridster-Logo.png';
 import './App.css';
-import TodoForm from './components/TodoForm'
-import TodoList from './components/TodoList'
-import Message from './components/Message'
-import Footer from './components/Footer'
+import { css } from 'emotion'
+import { connect } from 'react-redux';
+import Panel from 'react-bootstrap/lib/Panel'
+import Grid from 'react-bootstrap/lib/Grid'
+import Row from 'react-bootstrap/lib/Row'
+import Col from 'react-bootstrap/lib/Col'
+import Button from 'react-bootstrap/lib/Button'
+import Form from 'react-bootstrap/lib/Form'
+import FormGroup from 'react-bootstrap/lib/FormGroup'
+import ControlLabel from 'react-bootstrap/lib/ControlLabel'
+import FormControl from 'react-bootstrap/lib/FormControl'
+import { gridSetup, gridConfigHeightChange, gridConfigWidthChange } from "./reducers/grid";
+import { GridsterGrid } from "./components/GridsterGrid";
+import { GridsterConfig } from "./components/GridsterConfig";
+
 
 class App extends Component {
   render() {
+    const { width, height, dispatch: d } = this.props;
     return (
-      <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React with Redux</h2>
-        </div>
-        <Router>
-          <div className="Todo-App">
-            <Message />
-            <TodoForm />
-            <Route path='/:filter?' render={({match}) => (
-                <TodoList filter={match.params.filter} />
-              )} />
-            <Footer />
+        <div className="App">
+          <div className="App-header">
+            <img src={GridsterLogo} alt="logo"/>
           </div>
-        </Router>
-      </div>
+          <GridsterConfig />
+          <GridsterGrid />
+        </div>
     );
   }
 }
 
-export default App
+export default connect(
+    (state) => {
+      const { grid: { width, height, grid } } = state;
+      return { width, height, grid };
+    },
+    null
+)(App);
