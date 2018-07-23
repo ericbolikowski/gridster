@@ -20,7 +20,7 @@ const VISITED = 'VISITED';
 export const findClearGridPath = function (_grid) {
 
   const grid = cloneDeep(_grid);
-  const queue = new PriorityQueue();
+  const queue = [];
 
   const startCoordinates = findStartCoordinates(grid);
 
@@ -34,38 +34,38 @@ export const findClearGridPath = function (_grid) {
     status: 'Start'
   };
 
-  queue.enqueue(location);
+  queue.push(location);
 
-  while (queue.size() > 0) {
-    const currentLocation = queue.dequeue();
+  while (queue.length > 0) {
+    const currentLocation = queue.shift();
     let newLocation;
 
     newLocation = exploreInDirection(grid, currentLocation, NORTH);
     if (newLocation.status === CELL_STATE_END_POINT) {
       return newLocation.path;
     } else if (newLocation.status === VALID) {
-      queue.enqueue(newLocation);
+      queue.push(newLocation);
     }
 
     newLocation = exploreInDirection(grid, currentLocation, EAST);
     if (newLocation.status === CELL_STATE_END_POINT) {
       return newLocation.path;
     } else if (newLocation.status === VALID) {
-      queue.enqueue(newLocation);
+      queue.push(newLocation);
     }
 
     newLocation = exploreInDirection(grid, currentLocation, SOUTH);
     if (newLocation.status === CELL_STATE_END_POINT) {
       return newLocation.path;
     } else if (newLocation.status === VALID) {
-      queue.enqueue(newLocation);
+      queue.push(newLocation);
     }
 
     newLocation = exploreInDirection(grid, currentLocation, WEST);
     if (newLocation.status === CELL_STATE_END_POINT) {
       return newLocation.path;
     } else if (newLocation.status === VALID) {
-      queue.enqueue(newLocation);
+      queue.push(newLocation);
     }
   }
 
